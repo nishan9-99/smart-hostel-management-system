@@ -1,8 +1,8 @@
 # Smart Hostel Management System
 
-A PHP and MySQL hostel-management app built as a BCS403 Database Management Systems project. The app separates administrator and student workflows, with room allocation, dues, complaints, visits, announcements and reports. This repository contains the v4.0 local-demo source, database schema and Docker setup.
+A PHP and MySQL hostel-management app built as a BCS403 Database Management Systems project. The app separates administrator and student workflows, with room allocation, dues, complaints, visits, announcements and reports. The v4.0 source, database schema and Docker setup are being prepared for upload to this repository; at present only this README is published.
 
-> **Status:** This version was packaged for local use. A full Docker/runtime acceptance test of v4.0 has not yet been verified here. Do not treat this as a production-ready deployment. Screenshots from a running v4.0 instance are not available yet; they will be added after a verified local run.
+> **Status:** This version was packaged for local use. The source upload and a full Docker/runtime acceptance test of v4.0 have not yet been verified here. Do not treat this as a production-ready deployment. Screenshots from a running v4.0 instance are not available yet; they will be added after a verified local run.
 
 ## What it does
 
@@ -26,6 +26,8 @@ The schema includes foreign keys, indexes, views (`student_dues_view`, `room_occ
 - Optional Google OAuth for student sign-in; optional Gmail SMTP for real OTP/payment email
 
 ## Quick start (fresh local database)
+
+Once the source tree is uploaded:
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and start Docker.
 2. Clone this repository, then run from its root:
