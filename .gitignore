@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+/vendor/
+/uploads/payment_proofs/*
+!/uploads/payment_proofs/.htaccess
+!/uploads/payment_proofs/index.html
+*.log

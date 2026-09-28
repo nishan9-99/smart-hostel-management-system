@@ -1,0 +1,15 @@
+# Uploaded payment proofs are DATA, never code.
+# 1) PHP engine off in this directory (mod_php)
+php_flag engine off
+# 2) Never execute scripts that somehow land here
+<FilesMatch "\.(php[0-9]?|phtml|pht|phar|cgi|pl|py|asp|aspx|jsp|sh|shtml)$">
+    Require all denied
+</FilesMatch>
+# 3) Only serve whitelisted static types
+<FilesMatch "\.(jpe?g|png|gif|webp|pdf)$">
+    Require all granted
+</FilesMatch>
+# 4) No handler execution / no CGI / no listing
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8 .phar
+RemoveType .php .phtml
+Options -ExecCGI -Indexes

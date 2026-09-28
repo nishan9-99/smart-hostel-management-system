@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: smart_hostel_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: root
+      DB_NAME: smart_hostel
+      APP_FORCE_HTTPS: ${APP_FORCE_HTTPS:-0}
+      # OAuth secrets belong in a private .env file, never in Git or the ZIP.
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://localhost:8080/auth/google_callback.php}
+      # --- Real OTP email via Gmail SMTP (optional - see README "Email / SMTP") ---
+      # Without these, forgot-password runs in dev mode and shows the OTP on screen.
+      # Gmail requires an App Password (NOT your normal Gmail password):
+      # Google Account -> Security -> 2-Step Verification -> App passwords.
+      # SMTP_HOST: smtp.gmail.com
+      # SMTP_PORT: 587
+      # SMTP_USER: youraddress@gmail.com
+      # SMTP_PASS: your-16-character-app-password
+      # SMTP_FROM: youraddress@gmail.com
+      # SMTP_SECURE: tls
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: smart_hostel_db
+    restart: always
+    # event_scheduler needed for the hourly overdue-fee event
+    command: --event-scheduler=ON
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: smart_hostel
+    ports:
+      - "3308:3306"
+    volumes:
+      - smart_hostel_mysql_data:/var/lib/mysql
+      - ./database/smart_hostel.sql:/docker-entrypoint-initdb.d/smart_hostel.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: smart_hostel_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+
+volumes:
+  smart_hostel_mysql_data:
