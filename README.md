@@ -1,6 +1,6 @@
 # Smart Hostel Management System
 
-A PHP and MySQL hostel-management app built as a Database Management Systems project. The app separates administrator and student workflows, with room allocation, dues, complaints, visits, announcements and reports. This repository contains the v4.0 local-demo source, database schema and Docker setup.
+A PHP and MySQL hostel-management app. The app separates administrator and student workflows, with room allocation, dues, complaints, visits, announcements and reports. This repository contains the v4.0 local-demo source, database schema and Docker setup.
 
 > **Status:** This version was packaged for local use. A full Docker/runtime acceptance test of v4.0 has not yet been verified here. Do not treat this as a production-ready deployment. Screenshots from a running v4.0 instance are not available yet; they will be added after a verified local run.
 
@@ -89,4 +89,4 @@ The app uses hashed passwords and OTPs, CSRF tokens on state-changing forms, str
 
 **Screenshots:** Genuine captures from a running v4.0 app are pending; no generated mockups are presented as screenshots.
 
-Built by Nishan Giri for BCS403 DBMS. No separate license is granted for this project; the vendored PHPMailer code carries its own license in `lib/PHPMailer/LICENSE`.
+Built by Nishan Giri. No separate license is granted for this project; the vendored PHPMailer code carries its own license in `lib/PHPMailer/LICENSE`.
